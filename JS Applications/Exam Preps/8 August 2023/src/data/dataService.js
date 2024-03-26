@@ -3,6 +3,7 @@ import { page } from "../lib.js";
 
 const dashboardURL = 'http://localhost:3030/data/motorcycles?sortBy=_createdOn%20desc';
 const baseURL = 'http://localhost:3030/data/motorcycles/';
+const test = 'http://localhost:3030/data/motorcycles';
 
 export async function getItems(){
     return get(dashboardURL);
@@ -13,7 +14,7 @@ export async function getById(id){
 }
 
 export async function onCreate(data){
-    await post(baseURL, data);
+    await post(test, data);
 }
 
 export async function onEdit({model, imageUrl, year, mileage, contact, about}, event){

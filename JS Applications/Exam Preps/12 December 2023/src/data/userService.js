@@ -19,24 +19,20 @@ export async function onLogin({email, password}){
 }
 
 export async function onRegister(obj){
-    try {
-        let [email, password, repass] = Object.values(obj);
-    if (email.length > 0 && password.length > 0 && repass.length > 0){
+    let [email, password, repass] = Object.values(obj);
+    
+    if (email != '' && password != ''){
         if (password == repass){
             const data = await post(register, {email, password});
             saveUserData(data);
             page.redirect('/');
         } else{
-            throw new Error("Passwords dont match");
+            return alert("Passwords dont match");
         }
        
     } else{
-        throw new Error("Password or email are invalid");
+        return alert("Password or email are invalid");
     }
-    } catch (error) {
-        window.alert(error.message);
-    }
-    
 }
 
 export async function onLogout(){
